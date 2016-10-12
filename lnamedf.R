@@ -1,3 +1,5 @@
+library(XML)
+
 con <- url ('http://names.mongabay.com/data/1000.html')
 htmlcode <- readLines(con)
 close(con)
