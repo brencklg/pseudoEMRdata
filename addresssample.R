@@ -1,15 +1,15 @@
 library("XML")
 
 # generate a list of latitudes and longitudes to fish for addresses
-latbase <- 42.2414105
-lngbase <- -71.8526324
+latbase <- 42.0614155
+lngbase <- -72.7618240
 count <- 0
-df <- data.frame(matrix(nrow=10000, ncol=2))
-for (i in 1:100) {
-     latbase <- latbase + 0.000881546
-     lngbase <--71.8526324
-     for (j in 1:100) {
-          lngbase <- lngbase + 0.00233185
+df <- data.frame(matrix(nrow=2500, ncol=2))
+for (i in 1:50) {
+     latbase <- latbase + (0.5950473/50)
+     lngbase <--72.7618240
+     for (j in 1:50) {
+          lngbase <- lngbase + (.996721/50)
           count <- count + 1
           df[count,1] <- latbase
           df[count,2] <- lngbase
@@ -18,13 +18,13 @@ for (i in 1:100) {
 
 
 
-link<-matrix(NA, nrow=5000, ncol=1)
+link<-matrix(NA, nrow=2500, ncol=1)
 duh <- list()
 semi<-list()
-add1<-matrix(NA, ncol=1, nrow=5000)
-add2<-matrix(NA, ncol=1, nrow=5000)
-add3<-matrix(NA, ncol=1, nrow=5000)
-for(i in 501:5000){
+add1<-matrix(NA, ncol=1, nrow=2500)
+add2<-matrix(NA, ncol=1, nrow=2500)
+add3<-matrix(NA, ncol=1, nrow=2500)
+for(i in 1:2500){
      link[i,1]<- paste("https://maps.googleapis.com/maps/api/geocode/xml?",
                       "latlng=",df[i,1], ',', df[i,2],"&key=", APIKEY, sep="")
      duh[i]<-list(readLines(link[i,1]))
@@ -40,4 +40,4 @@ for(i in 501:5000){
 
 final <- cbind(add1,add2,add3)
 final[,1]
-saveRDS(final[101:500], 'address3.txt')
+saveRDS(final, 'address5.txt')
